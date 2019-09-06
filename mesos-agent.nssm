@@ -1,0 +1,6 @@
+[main]
+Description = My Mesos
+serviceName = mesos-agent
+Application = c:\dcos\mesos-binaries\mesos-agent.exe
+AppDirectory = c:\dcos\mesos-binaries
+AppParameters = --master="zk://172.16.13.155:2181/mesos" --launcher_dir="C:\dcos\mesos-binaries" --log_dir="C:\dcos\mesos-logs" --appc_store_dir="C:\dcos\images" --work_dir="C:\dcos\work" --runtime_dir="C:\dcos\work" --isolation="windows/cpu,windows/mem,filesystem/windows" --containerizers="mesos,docker" --attributes="os:windows" --ip=172.16.5.153 --hostname=172.16.5.153 --resources="ports:[10000-34000]" --executor_registration_timeout=10mins --fetcher_stall_timeout=10mins

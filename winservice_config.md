@@ -57,7 +57,7 @@ Description = diagnostics windows-node
 Application = c:\dcos\dcos-diagnostics.exe
 AppDirectory = c:\dcos
 AppParameters = --config dcos-diagnostics-config.json --role=agent daemon
-Dependencies = mesos-agent
+DependOnService = mesos-agent
 Start = SERVICE_AUTO_START
 AppStdout = c:\dcos\mesos-logs\dcos-diagnostics.log
 AppStderr = c:\dcos\mesos-logs\dcos-diagnostics.log

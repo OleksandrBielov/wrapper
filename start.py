@@ -1,7 +1,4 @@
-
-
 import winservice
 
-winservice.start("install", "mesos-agent.nssm")
-
-    
+winservice.start("setup", "diagnostics.nssm")
+winservice.start("start", "dcos-diagnostics")

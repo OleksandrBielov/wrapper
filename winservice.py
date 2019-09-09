@@ -50,34 +50,27 @@ class Service():
 
     def set_service(self,run):
         for i in self.filling(run):
-            print(i)
             cmd(i)
     
     def get_service_name(self):
         return self.service
 
-def run_service(service_name):
-    print(Service.RUN + service_name)
-    #os.system("nssm start " + self.service)
-    #
-
 def cmd(command):
     cmdCommand = command   #specify your cmd command
-    process = subprocess.Popen(cmdCommand.split(), stdout=subprocess.PIPE)
-    output, error = process.communicate()
-    return output, error
+    return subprocess.Popen(cmdCommand.split(), shell=True,stdout=subprocess.PIPE).communicate()[0].decode('utf-8').strip()
 
 def autostart_service(mode,service):
     if mode == "enable":
-        print(Service.SET + service + " Start SERVICE_AUTO_START")
+        print(cmd('{} {} {}'.format(Service.SET, service, 'Start SERVICE_AUTO_START')))
+#        print(cmd(Service.SET + " " + service + " Start SERVICE_AUTO_START"))
     else:
-        print(Service.SET + service + " Start SERVICE_DISABLED")            
-        #os.system("nssm start " + self.service + " > null")
+        print(cmd('{} {} {}'.format(Service.SET, service, 'Start SERVICE_DISABLED')))
+ #       print(cmd(Service.SET + " "  + service + " Start SERVICE_DISABLED"))            
 
 def transfer_command_to_nssm(command,service):
-    command_str = "nssm " + command + " " + service
-    print(command_str)
+    command_str = "nssm " + command + " " + service + " confirm"
     print(cmd(command_str))
+    
 
 def msg(name=None):   
     return '''winservice.py [-h]

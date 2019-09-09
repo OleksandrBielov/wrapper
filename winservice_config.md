@@ -63,6 +63,3 @@ AppStdout = c:\dcos\mesos-logs\dcos-diagnostics.log
 AppStderr = c:\dcos\mesos-logs\dcos-diagnostics.log
 AppEnvironmentExtra = DCOS_VERSION=13.3
 ```
-
-
-

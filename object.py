@@ -1,7 +1,7 @@
 import argparse
 import sys
 import os
-from subprocess import PIPE, run
+import subprocess
 
 
 ALL_COMMANDS = ("start", "stop", "remove","restart","status","pause","continue","rotate")
@@ -56,10 +56,11 @@ class Service():
         return self.service
 
 def cmd(command):
-    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-    if result.returncode:
-       sys.stderr.write(result.stderr)
-#    print(result.returncode, result.stdout, result.stderr)
+    cmdCommand = command   #specify your cmd command
+#    return subprocess.Popen(cmdCommand.split(), shell=True,stdout=subprocess.PIPE).communicate()[0].decode('utf-8').strip()
+    process = subprocess.Popen(cmdCommand.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    return error
 
 
 def autostart_service(mode,service):
@@ -72,7 +73,7 @@ def autostart_service(mode,service):
 
 def transfer_command_to_nssm(command,service):
     command_str = "nssm " + command + " " + service + " confirm"
-    cmd(command_str)
+    print(cmd(command_str))
     
 
 def msg(name=None):   
